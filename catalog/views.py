@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from catalog.models import Product
+
 
 def home(request):
-    return render(request,'catalog/home.html')
+    context = {'product_list': Product.objects.all()}
+    return render(request, 'catalog/home.html', context)
 
 
 def contacts(request):
@@ -10,9 +13,12 @@ def contacts(request):
         phone = request.POST.get('phone')
         message = request.POST.get('message')
         print(f'Ваше сообщение: {name}, {phone}, {message}')
-        with open('write.txt', 'wt',encoding='UTF-8') as file:
+        with open('write.txt', 'wt', encoding='UTF-8') as file:
             file.write(f'Ваше сообщение: {name}, {phone}, {message}')
 
     return render(request, 'catalog/contacts.html')
 
 
+def product(request, pk):
+    context = {'catalog': get_object_or_404(Product, pk=pk)}
+    return render(request, 'catalog/product.html', context)
