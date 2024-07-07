@@ -23,7 +23,7 @@ class Product(models.Model):
     price = models.FloatField(verbose_name='Цена')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория')
     created_at = models.DateTimeField(default=timezone.now, verbose_name='Дата создания')
-    updated_at = models.DateTimeField(default=timezone.now, verbose_name='Дата последнего изменения')
+    update_at = models.DateTimeField(default=timezone.now, verbose_name='Дата последнего изменения')
 
     class Meta:
         verbose_name = 'Продукт'
