@@ -1,4 +1,3 @@
-<!doctype html>
 {% extends 'catalog/base.html' %}
 {% block content %}
 {% load my_tags %}
@@ -10,7 +9,7 @@
                     <h4 class="my-0 font-weight-normal">{{ product.name }}</h4>
                 </div>
                 <div class="card-body">
-                    <img class="card-img-top" src="{{ catalog.image | media_filter }}">
+                    <img class="card-img-top" src="{{ product.image | media_filter }}">
                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                         <li>- {{ product.description|slice:100 }}</li>
                     </ul>
