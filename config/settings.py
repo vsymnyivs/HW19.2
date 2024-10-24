@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+from urllib.request import localhost
+
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -84,9 +86,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'HW19.2',
-        'USER': USER_DB,
-        'PASSWORD': PASSWORD_DB,
+        'NAME': 'ymnyi',
+        'USER': 'postgres',
+        'PASSWORD': '7410369',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -136,3 +140,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
