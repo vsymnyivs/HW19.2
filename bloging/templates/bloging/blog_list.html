@@ -3,7 +3,9 @@
 {% load my_tags %}
 <div class="container px-3 py-3 pt-md-5 pb-md-4">
     <div class="col-12 mb-5 pt-md-5">
+        {% if user.is_authenticated %}
         <a class="btn btn-outline-primary" href="{% url 'bloging:create' %}">Добавить отзыв</a>
+        {% endif %}
     </div>
     <div class="row text-center">
         {% for object in object_list %}
