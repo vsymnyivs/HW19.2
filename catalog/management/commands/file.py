@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     @staticmethod
     def json_read_categories():
-        with open('Category_data.json') as file:
+        with open("Category_data.json") as file:
             result = json.load(file)
             commands_list = []
             for item in result:
@@ -18,7 +18,7 @@ class Command(BaseCommand):
 
     @staticmethod
     def json_read_products():
-        with open('Product_data.json') as file:
+        with open("Product_data.json", encoding="utf-8") as file:
             result = json.load(file)
             commands_list = []
             for item in result:
@@ -32,15 +32,22 @@ class Command(BaseCommand):
         category_for_create = []
         for category in Command.json_read_categories():
             category_for_create.append(
-                Category(id=category['pk'], name=category['fields']['name'],
-                         description=category['fields']['description'])
+                Category(
+                    id=category["pk"],
+                    name=category["fields"]["name"],
+                    description=category["fields"]["description"],
+                )
             )
         Category.objects.bulk_create(category_for_create)
 
         for product in Command.json_read_products():
             product_for_create.append(
-                Product(id=product['pk'], category=Category.objects.get(pk=product['fields']['category']),
-                        name=product['fields']['name'], price=product['fields']['price'],
-                        description=product['fields']['description'])
+                Product(
+                    id=product["pk"],
+                    category=Category.objects.get(pk=product["fields"]["category"]),
+                    name=product["fields"]["name"],
+                    price=product["fields"]["price"],
+                    description=product["fields"]["description"],
+                )
             )
         Product.objects.bulk_create(product_for_create)
